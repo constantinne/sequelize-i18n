@@ -220,3 +220,10 @@ An Sequelize instance method is added to the Sequelize model in order to set vir
     category_instance.get_i18n( "ES" );
     // category_instance.name == "" if options.default_language_fallback is set to false
     // category_instance.name == "french name" if options.default_language_fallback is set to true
+
+### set_i18n instance method
+
+An Sequelize instance method is added to the Sequelize model in order to set virtual i18n property in the lanuage you want.
+
+    category_instance.set_i18n("fr", "category", "le francais nome");
+    
