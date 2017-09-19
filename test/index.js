@@ -3,6 +3,7 @@
 const should = require('chai').should();
 const Sequelize = require('sequelize');
 const utils = require('../lib/utils');
+const Sequelize_i18n = require('../');
 require('mocha');
 
 const languages = {
@@ -17,7 +18,7 @@ let instance;
 
 describe('Utils methods', () => {
 	it('should return the i18n model name', () => {
-		utils.getI18nName('test').should.equal('test_i18n');
+		Sequelize_i18n.getI18nName('TestModel').should.equal('TestModel_i18n');
 	});
 
 	it('toArray() of null should return an empty array', () => {
@@ -75,7 +76,6 @@ describe('Sequelize', () => {
 	});
 
 	it('should init i18n module', () => {
-		const Sequelize_i18n = require('../');
 		i18n = new Sequelize_i18n(sequelize, {
 			languages: languages.list,
 			default_language: languages.default
@@ -109,7 +109,10 @@ describe('Sequelize-i18n', () => {
 	});
 
 	it('should set i18n instance methods', () => {
-		i18n.setInstanceMethods(Model.prototype, i18n.getI18nName(Model.name));
+		i18n.setInstanceMethods(
+			Model.prototype,
+			Sequelize_i18n.getI18nName(Model.name)
+		);
 		Model.prototype.get_i18n.should.be.a('function');
 		Model.prototype.set_i18n.should.be.a('function');
 	});

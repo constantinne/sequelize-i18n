@@ -21,7 +21,7 @@ yarn add https://github.com/constantinne/sequelize-i18n
 ## Usage
 
 
-###Model definition
+### Model definition
 
 Define your models as usal using sequelize, simply set i18n property to true for the internationnalised fields :
 ```js
@@ -226,4 +226,3 @@ An Sequelize instance method is added to the Sequelize model in order to set vir
 An Sequelize instance method is added to the Sequelize model in order to set virtual i18n property in the lanuage you want.
 
     category_instance.set_i18n("fr", "category", "le francais nome");
-    
