@@ -1,6 +1,8 @@
-var Model = function(sequelize, DataTypes) {
-	var Model = sequelize.define(
-		'model',
+const { Model } = require('sequelize');
+
+const TestModel = (sequelize, DataTypes) => {
+	class TestModel extends Model {}
+	TestModel.init(
 		{
 			id: {
 				type: DataTypes.BIGINT,
@@ -15,11 +17,12 @@ var Model = function(sequelize, DataTypes) {
 				type: DataTypes.STRING
 			}
 		},
-		{ freezeTableName: true }
+		{ sequelize }
 	);
-	return Model;
+
+	return TestModel;
 };
 
 module.exports = function(sequelize) {
-	return sequelize.import('model', Model);
+	return sequelize.import('model', TestModel);
 };
